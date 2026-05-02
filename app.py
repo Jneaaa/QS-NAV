@@ -303,7 +303,7 @@ st.markdown("""
 # Sidebar with Enhanced Branding
 with st.sidebar:
     st.markdown("<br>", unsafe_allow_html=True)
-    st.image("https://www.ibm.com/brand/experience-guides/developer/brand/logo/ibm-logo.png", width=100)
+    st.image("psyduck.png", width=100)
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown("### 📋 Project Details")
