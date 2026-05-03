@@ -38,9 +38,26 @@ st.markdown("""
         --ibm-teal: #009d9a;
     }
     
-    /* Main Background with Gradient */
+    /* Dark Mode Support */
+    [data-testid="stAppViewContainer"][data-theme="dark"] {
+        --text-color: #f4f4f4;
+        --bg-color: #161616;
+        --card-bg: #262626;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="light"] {
+        --text-color: #161616;
+        --bg-color: #f4f4f4;
+        --card-bg: #ffffff;
+    }
+    
+    /* Main Background with Gradient - Adapts to theme */
     .main {
         background: linear-gradient(135deg, #f4f4f4 0%, #e8eef5 100%);
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .main {
+        background: linear-gradient(135deg, #161616 0%, #1a1d2e 100%);
     }
     
     /* Custom Header Styling */
@@ -89,7 +106,7 @@ st.markdown("""
     
     /* Enhanced Metrics */
     .stMetric {
-        background: white;
+        background: var(--card-bg, white);
         padding: 1.5rem;
         border-radius: 12px;
         border: none;
@@ -97,31 +114,63 @@ st.markdown("""
         transition: all 0.3s ease;
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric {
+        background: #262626;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Fix metric text colors in dark mode */
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric label,
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric [data-testid="stMetricValue"],
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric [data-testid="stMetricLabel"],
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric div {
+        color: #f4f4f4 !important;
+    }
+    
     .stMetric:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 24px rgba(15, 98, 254, 0.15);
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMetric:hover {
+        box-shadow: 0 8px 24px rgba(15, 98, 254, 0.4);
+    }
+    
     /* Card Styling */
     div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {
-        background: white;
+        background: var(--card-bg, white);
         padding: 1.5rem;
         border-radius: 12px;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {
+        background: #262626;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+    
     /* File Uploader Enhancement */
     .stFileUploader {
-        background: white;
+        background: var(--card-bg, white);
         padding: 2rem;
         border-radius: 12px;
         border: 2px dashed var(--ibm-blue-light);
         transition: all 0.3s ease;
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stFileUploader {
+        background: #262626;
+        border-color: var(--ibm-blue);
+    }
+    
     .stFileUploader:hover {
         border-color: var(--ibm-blue);
         background: #f8f9ff;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stFileUploader:hover {
+        background: #2d2d2d;
+        border-color: var(--ibm-blue-light);
     }
     
     /* Sidebar Styling */
@@ -177,6 +226,13 @@ st.markdown("""
         border-radius: 12px;
         margin: 1rem 0;
         box-shadow: 0 2px 8px rgba(15, 98, 254, 0.1);
+        color: #161616;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .info-box {
+        background: linear-gradient(135deg, #1a2332 0%, #1e2838 100%);
+        color: #f4f4f4;
+        box-shadow: 0 2px 8px rgba(15, 98, 254, 0.3);
     }
     
     .success-box {
@@ -186,6 +242,13 @@ st.markdown("""
         border-radius: 12px;
         margin: 1rem 0;
         box-shadow: 0 2px 8px rgba(0, 157, 154, 0.1);
+        color: #161616;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .success-box {
+        background: linear-gradient(135deg, #1a2e2c 0%, #1e3532 100%);
+        color: #f4f4f4;
+        box-shadow: 0 2px 8px rgba(0, 157, 154, 0.3);
     }
     
     .warning-box {
@@ -195,6 +258,13 @@ st.markdown("""
         border-radius: 12px;
         margin: 1rem 0;
         box-shadow: 0 2px 8px rgba(255, 131, 43, 0.1);
+        color: #161616;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .warning-box {
+        background: linear-gradient(135deg, #2e2419 0%, #352a1e 100%);
+        color: #f4f4f4;
+        box-shadow: 0 2px 8px rgba(255, 131, 43, 0.3);
     }
     
     /* Divider Enhancement */
@@ -205,9 +275,27 @@ st.markdown("""
         background: linear-gradient(90deg, transparent, var(--ibm-gray-20), transparent);
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] hr {
+        background: linear-gradient(90deg, transparent, #3d3d3d, transparent);
+    }
+    
     /* Spinner */
     .stSpinner > div {
         border-top-color: var(--ibm-blue) !important;
+    }
+    
+    /* General Text Color Fixes for Dark Mode */
+    [data-testid="stAppViewContainer"][data-theme="dark"] h1,
+    [data-testid="stAppViewContainer"][data-theme="dark"] h2,
+    [data-testid="stAppViewContainer"][data-theme="dark"] h3,
+    [data-testid="stAppViewContainer"][data-theme="dark"] p,
+    [data-testid="stAppViewContainer"][data-theme="dark"] div,
+    [data-testid="stAppViewContainer"][data-theme="dark"] span {
+        color: inherit;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .stMarkdown {
+        color: #f4f4f4;
     }
     
     /* Footer */
@@ -218,6 +306,15 @@ st.markdown("""
         color: var(--ibm-gray-50);
         font-size: 0.875rem;
         border-top: 1px solid var(--ibm-gray-20);
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .footer {
+        color: #8d8d8d;
+        border-top: 1px solid #3d3d3d;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .footer a {
+        color: var(--ibm-blue-light);
     }
     
     /* Badge Styling */
@@ -236,14 +333,29 @@ st.markdown("""
         color: #da1e28;
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] .badge-critical {
+        background: #3d1f1f;
+        color: #ff6b6b;
+    }
+    
     .badge-warning {
         background: #fff4e5;
         color: #ff832b;
     }
     
+    [data-testid="stAppViewContainer"][data-theme="dark"] .badge-warning {
+        background: #3d2e1f;
+        color: #ffb366;
+    }
+    
     .badge-success {
         background: #e5f9f5;
         color: #009d9a;
+    }
+    
+    [data-testid="stAppViewContainer"][data-theme="dark"] .badge-success {
+        background: #1f3d3a;
+        color: #42d9d4;
     }
     
     /* Subheader Enhancement */
